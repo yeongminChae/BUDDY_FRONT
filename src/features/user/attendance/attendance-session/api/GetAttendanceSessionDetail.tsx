@@ -7,7 +7,7 @@ export const getAttendanceSessionDetail = async (
 ): Promise<ApiResponse<GetAttendanceSessionDetailResponse>> => {
   const response = await apiClient.get<
     ApiResponse<GetAttendanceSessionDetailResponse>
-  >(`/sessions/${sessionId}/attendance`);
-
+  >(`/api/public/sessions/${sessionId}/attendance`);
+  // /api/public
   return response.data;
 };
