@@ -18,6 +18,7 @@ import type { GetTopicResponse } from "../../../../features/admin/topic/topic-ge
 import { unwrapApiResponse } from "../../../../features/client-common/unwrapApiResponse";
 import { getTopicQeustions } from "../../../../features/admin/topic/topic-get/api/GetTopic";
 import { buildIntroMessage } from "../topic-create/AdminSessionTopicCreatePage";
+import { BuddyLoadingCard } from "../../../../shared/ui/buddy-loading/BuddyLoadingCard";
 
 export function AdminSessionTopicManagePage() {
   const navigate = useNavigate();
@@ -42,7 +43,12 @@ export function AdminSessionTopicManagePage() {
   }, [sessionId]);
 
   if (isLoading) {
-    return <div>불러오는 중...</div>;
+    return (
+      <BuddyLoadingCard
+        title="주제를 불러오고 있어요"
+        description="오늘 세션의 주제를 확인하는 중입니다."
+      />
+    );
   }
 
   if (topic?.mainTopic == null || topic.mainTopic.trim() == "") {

@@ -12,6 +12,7 @@ import { unwrapApiResponse } from "../../../features/client-common/unwrapApiResp
 import { sleep } from "../../../shared/lib/cn";
 import { Mail, Plus, Search, UserRound, Users, UserCheck } from "lucide-react";
 import { BuddyCard } from "../../../shared/ui/buddy-card/BuddyCard";
+import { BuddyLoadingCard } from "../../../shared/ui/buddy-loading/BuddyLoadingCard";
 
 type AdminUserListLoadingProps = {
   onBackBtnClick: () => void;
@@ -194,9 +195,10 @@ export function AdminUserListPage() {
           <div ref={loadMoreRef} className="h-10" />
 
           {isLoading && (
-            <div className="py-4 text-center text-sm text-[#6C7A80]">
-              불러오는 중...
-            </div>
+            <BuddyLoadingCard
+              title="유저 목록을 불러오고 있어요"
+              description="유저 목록을 확인하는 중입니다."
+            />
           )}
 
           {hasNext === false && users.length > 0 && (

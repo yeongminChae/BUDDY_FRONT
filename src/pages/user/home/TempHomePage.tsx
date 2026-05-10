@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import type { AttendanceSessionItem } from "../../../features/user/attendance/attendance-session/model/AttendanceSessionItem";
 import { getAttendanceSessions } from "../../../features/user/attendance/attendance-session/api/GetAttendanceSessions";
 import { unwrapApiResponse } from "../../../features/client-common/unwrapApiResponse";
+import { BuddyLoadingCard } from "../../../shared/ui/buddy-loading/BuddyLoadingCard";
 
 export function TempHomePage() {
   const navigate = useNavigate();
@@ -62,9 +63,10 @@ export function TempHomePage() {
 
         <SectionBlock title="오늘의 세션">
           {isSessionLoading ? (
-            <div className="py-4 text-sm text-center text-buddySubText">
-              불러오는 중...
-            </div>
+            <BuddyLoadingCard
+              title="세션을 불러오고 있어요"
+              description="오늘 참석 가능한 세션을 확인하는 중입니다."
+            />
           ) : sessions.length === 0 ? (
             <BuddyCard className="p-5">
               <div className="text-sm text-buddySubText">

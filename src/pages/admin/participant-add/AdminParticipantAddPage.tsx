@@ -13,6 +13,7 @@ import { sleep } from "../../../shared/lib/cn";
 import { Check, Mail, Plus, Search, UserPlus, Users, X } from "lucide-react";
 import { SectionBlock } from "../../../shared/ui/section-block/SectionBlock";
 import { BuddyCard } from "../../../shared/ui/buddy-card/BuddyCard";
+import { BuddyLoadingCard } from "../../../shared/ui/buddy-loading/BuddyLoadingCard";
 
 type AdminSessionLoadingProps = {
   onBackBtnClick: () => void;
@@ -253,9 +254,10 @@ export function AdminParticipantAddPage() {
           <div ref={loadMoreRef} className="h-10" />
 
           {isLoading && (
-            <div className="py-4 text-center text-sm text-[#6C7A80]">
-              불러오는 중...
-            </div>
+            <BuddyLoadingCard
+              title="유저를 불러오고 있어요"
+              description="참석 가능한 유저를 확인하는 중입니다."
+            />
           )}
 
           {hasNext === false && candidates.length > 0 && (
