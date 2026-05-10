@@ -9,7 +9,7 @@ export const createAttendanceWord = async (
 ): Promise<ApiResponse<CreateAttendanceWordResponse>> => {
   const response = await apiClient.post<
     ApiResponse<CreateAttendanceWordResponse>
-  >(`/api/public/sessions/${sessionId}/attendance-words)`, request);
+  >(`/api/public/sessions/${sessionId}/attendance-words`, request);
 
   return response.data;
 };
