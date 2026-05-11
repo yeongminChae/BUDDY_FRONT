@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 import { AppShell } from "../../../shared/ui/app-shell/AppShell";
 import { AppHeader } from "../../../shared/ui/app-header/AppHeader";
-import { BottomActionBar } from "../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { BuddyButton } from "../../../shared/ui/buddy-button/BuddyButton";
 import { BuddyCard } from "../../../shared/ui/buddy-card/BuddyCard";
 import { BuddyInput } from "../../../shared/ui/buddy-input/BuddyInput";
@@ -103,7 +102,7 @@ export function AdminUserCreatePage() {
   };
 
   return (
-    <AppShell hasBottomBar>
+    <AppShell>
       <AppHeader
         showBackButton
         title="Buddy"
@@ -116,7 +115,7 @@ export function AdminUserCreatePage() {
       />
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="space-y-6 pb-36">
+        <div className="pb-10 space-y-6">
           <UserCreateHeroCard
             displayName={previewName}
             email={watchedEmail}
@@ -275,27 +274,25 @@ export function AdminUserCreatePage() {
           </SectionBlock>
         </div>
 
-        <BottomActionBar>
-          <div className="grid grid-cols-1 gap-3">
-            <BuddyButton
-              fullWidth
-              type="submit"
-              leftIcon={<Save size={18} />}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "저장 중..." : "저장"}
-            </BuddyButton>
+        <div className="grid grid-cols-1 gap-3">
+          <BuddyButton
+            fullWidth
+            type="submit"
+            leftIcon={<Save size={18} />}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "저장 중..." : "저장"}
+          </BuddyButton>
 
-            <BuddyButton
-              fullWidth
-              type="button"
-              variant="secondary"
-              onClick={() => navigate("/admin/users")}
-            >
-              취소
-            </BuddyButton>
-          </div>
-        </BottomActionBar>
+          <BuddyButton
+            fullWidth
+            type="button"
+            variant="secondary"
+            onClick={() => navigate("/admin/users")}
+          >
+            취소
+          </BuddyButton>
+        </div>
       </form>
     </AppShell>
   );

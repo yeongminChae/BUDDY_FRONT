@@ -5,7 +5,6 @@ import { AppHeader } from "../../../shared/ui/app-header/AppHeader";
 import { PageTitle } from "../../../shared/ui/page-title/PageTitle";
 import { BuddyButton } from "../../../shared/ui/buddy-button/BuddyButton";
 import { BuddyCard } from "../../../shared/ui/buddy-card/BuddyCard";
-import { BottomActionBar } from "../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { getAdminParticipantManage } from "../../../features/admin/session-applicant/session-applicant-get/api/GetAdminParticipant";
 import { unwrapApiResponse } from "../../../features/client-common/unwrapApiResponse";
 import type { GetAdminParticipantManageResponse } from "../../../features/admin/session-applicant/session-applicant-get/model/GetAdminParticipantManageResponse";
@@ -115,7 +114,7 @@ export function AdminParticipantManagePage() {
   };
 
   return (
-    <AppShell hasBottomBar>
+    <AppShell>
       <AppHeader
         showBackButton
         title="Buddy"
@@ -127,7 +126,7 @@ export function AdminParticipantManagePage() {
         subtitle="세션 신청자와 참석 인원을 확인하고 관리해요."
       />
 
-      <div className="space-y-6 pb-28">
+      <div className="pb-10 space-y-6">
         <ParticipantManageHeroCard
           title={session.title}
           currentCount={participantList.length}
@@ -177,16 +176,14 @@ export function AdminParticipantManagePage() {
         </SectionBlock>
       </div>
 
-      <BottomActionBar>
-        <BuddyButton
-          fullWidth
-          leftIcon={<Table2 size={18} />}
-          disabled={isTableingRunning || participantList.length === 0}
-          onClick={runTableing}
-        >
-          {isTableingRunning ? "자리배치 실행 중..." : "자리배치 실행"}
-        </BuddyButton>
-      </BottomActionBar>
+      <BuddyButton
+        fullWidth
+        leftIcon={<Table2 size={18} />}
+        disabled={isTableingRunning || participantList.length === 0}
+        onClick={runTableing}
+      >
+        {isTableingRunning ? "자리배치 실행 중..." : "자리배치 실행"}
+      </BuddyButton>
     </AppShell>
   );
 }

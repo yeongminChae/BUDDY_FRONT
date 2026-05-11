@@ -189,7 +189,7 @@ export function AdminSessionCreatePage() {
           >
             <BuddyCard>
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <FormField errorMessage={errors.sessionDate?.message}>
                     <BuddyInput
                       label="날짜"
@@ -211,15 +211,17 @@ export function AdminSessionCreatePage() {
                   </FormField>
                 </div>
 
-                <FormField errorMessage={errors.location?.message}>
-                  <BuddyInput
-                    label="장소"
-                    placeholder="예: 강남 스터디룸 3층"
-                    {...register("location", {
-                      required: "장소는 필수입니다.",
-                    })}
-                  />
-                </FormField>
+                <div className="mt-4">
+                  <FormField errorMessage={errors.location?.message}>
+                    <BuddyInput
+                      label="장소"
+                      placeholder="예: 강남 스터디룸 3층"
+                      {...register("location", {
+                        required: "장소는 필수입니다.",
+                      })}
+                    />
+                  </FormField>
+                </div>
               </div>
             </BuddyCard>
           </SectionBlock>

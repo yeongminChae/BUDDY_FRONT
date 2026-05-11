@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppShell } from "../../../shared/ui/app-shell/AppShell";
 import { AppHeader } from "../../../shared/ui/app-header/AppHeader";
-import { BottomActionBar } from "../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { BuddyButton } from "../../../shared/ui/buddy-button/BuddyButton";
 import { PageTitle } from "../../../shared/ui/page-title/PageTitle";
 import { SectionBlock } from "../../../shared/ui/section-block/SectionBlock";
@@ -142,6 +141,14 @@ export function AdminUserListPage() {
           staffUserCount={users.filter((user) => user.role === "STAFF").length}
         />
 
+        <BuddyButton
+          fullWidth
+          leftIcon={<Plus size={18} />}
+          onClick={() => navigate("/admin/users/create")}
+        >
+          유저 추가
+        </BuddyButton>
+
         <SectionBlock
           title="유저 검색"
           description="이름이나 닉네임으로 유저를 찾아요."
@@ -208,16 +215,6 @@ export function AdminUserListPage() {
           )}
         </SectionBlock>
       </div>
-
-      <BottomActionBar>
-        <BuddyButton
-          fullWidth
-          leftIcon={<Plus size={18} />}
-          onClick={() => navigate("/admin/users/create")}
-        >
-          유저 추가
-        </BuddyButton>
-      </BottomActionBar>
     </AppShell>
   );
 }

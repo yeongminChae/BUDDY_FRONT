@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { AppShell } from "../../../../shared/ui/app-shell/AppShell";
 import { PageTitle } from "../../../../shared/ui/page-title/PageTitle";
 import { AppHeader } from "../../../../shared/ui/app-header/AppHeader";
-import { BottomActionBar } from "../../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { BuddyButton } from "../../../../shared/ui/buddy-button/BuddyButton";
 import { unwrapApiResponse } from "../../../../features/client-common/unwrapApiResponse";
 import React, { useEffect, useMemo, useState } from "react";
@@ -107,7 +106,7 @@ export function TempAttendancePage() {
   };
 
   return (
-    <AppShell hasBottomBar>
+    <AppShell>
       <AppHeader showBackButton title="Buddy" onBack={() => navigate("/")} />
 
       <PageTitle
@@ -116,7 +115,7 @@ export function TempAttendancePage() {
       />
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="space-y-6 pb-36">
+        <div className="pb-10 space-y-6">
           <AttendanceHeroCard
             displayName={displayName}
             sessionDetail={sessionDetail ?? undefined}
@@ -133,27 +132,25 @@ export function TempAttendancePage() {
           <WordInput errors={errors} register={register} watch={watch} />
         </div>
 
-        <BottomActionBar>
-          <div className="grid grid-cols-1 gap-3">
-            <BuddyButton
-              fullWidth
-              type="submit"
-              leftIcon={<CheckCircle2 size={18} />}
-              disabled={isSubmitting || isSessionLoading}
-            >
-              {isSubmitting ? "출석 저장 중..." : "출석 완료"}
-            </BuddyButton>
+        <div className="grid grid-cols-1 gap-3">
+          <BuddyButton
+            fullWidth
+            type="submit"
+            leftIcon={<CheckCircle2 size={18} />}
+            disabled={isSubmitting || isSessionLoading}
+          >
+            {isSubmitting ? "출석 저장 중..." : "출석 완료"}
+          </BuddyButton>
 
-            <BuddyButton
-              fullWidth
-              type="button"
-              variant="secondary"
-              onClick={() => navigate("/")}
-            >
-              취소
-            </BuddyButton>
-          </div>
-        </BottomActionBar>
+          <BuddyButton
+            fullWidth
+            type="button"
+            variant="secondary"
+            onClick={() => navigate("/")}
+          >
+            취소
+          </BuddyButton>
+        </div>
       </form>
     </AppShell>
   );

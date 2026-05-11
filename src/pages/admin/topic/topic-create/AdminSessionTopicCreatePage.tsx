@@ -9,7 +9,6 @@ import { SectionBlock } from "../../../../shared/ui/section-block/SectionBlock";
 import { BuddyCard } from "../../../../shared/ui/buddy-card/BuddyCard";
 import { BuddyInput } from "../../../../shared/ui/buddy-input/BuddyInput";
 import { BuddyButton } from "../../../../shared/ui/buddy-button/BuddyButton";
-import { BottomActionBar } from "../../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { CreateTopic } from "../../../../features/admin/topic/topic-create/api/CreateTopic";
 import { BuddyTopicTextareaField } from "../../../../shared/ui/buddy-textarea/BuddyTopicTextareaField";
 import { MiniMetricCard } from "../../../../shared/ui/buddy-metric-card/MiniMetricCard";
@@ -81,7 +80,7 @@ export function AdminSessionTopicCreatePage() {
   };
 
   return (
-    <AppShell hasBottomBar>
+    <AppShell>
       <AppHeader
         showBackButton
         title="Buddy"
@@ -94,7 +93,7 @@ export function AdminSessionTopicCreatePage() {
       />
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="pb-32 space-y-6">
+        <div className="pb-10 space-y-6">
           <TopicHeroCard
             mainTopic={watchedMainTopic}
             questionCount={validQuestionCount}
@@ -231,11 +230,14 @@ export function AdminSessionTopicCreatePage() {
               </div>
             </BuddyCard>
           </SectionBlock>
-        </div>
 
-        <BottomActionBar>
-          <div className="grid grid-cols-1 gap-3">
-            <BuddyButton fullWidth type="submit" disabled={isSubmitting}>
+          <div className="pb-4 space-y-3">
+            <BuddyButton
+              fullWidth
+              type="submit"
+              size="lg"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? "저장 중..." : "주제 저장"}
             </BuddyButton>
 
@@ -243,12 +245,13 @@ export function AdminSessionTopicCreatePage() {
               fullWidth
               type="button"
               variant="secondary"
+              size="lg"
               onClick={() => navigate(`/admin/sessions/${sessionId}`)}
             >
               취소
             </BuddyButton>
           </div>
-        </BottomActionBar>
+        </div>
       </form>
     </AppShell>
   );

@@ -4,7 +4,6 @@ import { AppShell } from "../../../shared/ui/app-shell/AppShell";
 import { PageTitle } from "../../../shared/ui/page-title/PageTitle";
 import { BuddyButton } from "../../../shared/ui/buddy-button/BuddyButton";
 import { BuddyTabs } from "../../../shared/ui/buddy-tabs/BuddyTabs";
-import { BottomActionBar } from "../../../shared/ui/bottom-action-bar/BottomActionBar";
 import { TableCard } from "../../../widgets/table-card/TableCard";
 import { TableMemberRow } from "../../../widgets/table-card/TableMemberRow";
 import { AppTopBar } from "../../../shared/ui/app-topbar/AppTopBar";
@@ -256,12 +255,13 @@ export function AdminTableResultPage() {
   };
 
   return (
-    <AppShell hasBottomBar>
+    <AppShell>
       <AppTopBar
         title="Buddy"
         showBackButton={true}
         onBack={() => navigate(`/admin/sessions/${numericSessionId}`)}
       />
+
       <PageTitle title="테이블 배치" />
 
       <BuddyTabs
@@ -277,7 +277,9 @@ export function AdminTableResultPage() {
         {tableInfo.map((table) => (
           <TableCard
             key={`${round}-${table.tableNo}`}
-            tableName={`${table.tableNo} · ${round === "round1" ? "Round 1" : "Round 2"}`}
+            tableName={`${table.tableNo} · ${
+              round === "round1" ? "Round 1" : "Round 2"
+            }`}
             participantCount={table.members.length}
           >
             {table.members.map((member) => (
@@ -294,22 +296,21 @@ export function AdminTableResultPage() {
         ))}
       </div>
 
-      <BottomActionBar>
-        <div className="flex flex-col gap-3">
-          <BuddyButton onClick={runTabeling} fullWidth disabled={isSubmitting}>
-            {isSubmitting ? "재배치 중..." : "재배치"}
-          </BuddyButton>
-          <BuddyButton
-            fullWidth
-            variant={isEdited ? "primary" : "secondary"}
-            onClick={
-              isEdited ? handleSaveEditedTableing : openTableingResultInNewTab
-            }
-          >
-            확인
-          </BuddyButton>
-        </div>
-      </BottomActionBar>
+      <div className="pb-8 mt-6 space-y-3">
+        <BuddyButton onClick={runTabeling} fullWidth disabled={isSubmitting}>
+          {isSubmitting ? "재배치 중..." : "재배치"}
+        </BuddyButton>
+
+        <BuddyButton
+          fullWidth
+          variant={isEdited ? "primary" : "secondary"}
+          onClick={
+            isEdited ? handleSaveEditedTableing : openTableingResultInNewTab
+          }
+        >
+          {isEdited ? "변경사항 저장" : "확인"}
+        </BuddyButton>
+      </div>
 
       {isSubmitting && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
